@@ -2,6 +2,8 @@
 gem 'bower-rails'<% if (includeModernizr) { %>
 # modernizr
 gem 'modernizr-rails', '~> 2.7.1'<% } %>
+# react jsx compile
+gem 'react-rails'
 # requirejs
 gem 'requirejs-rails'<% if (includeButtonCss) { %>
 # button sass
