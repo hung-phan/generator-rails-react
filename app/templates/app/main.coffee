@@ -1,50 +1,29 @@
+###* @jsx React.DOM ###
 require [
-  "angular"
-  "jquery"
-  "restangular"<% if (includeAngularAnimate) { %>
-  "angular-animate"<% } %>
-  "angular-ui-router"<% if (includeBindonce) { %>
-  "bindonce"<% } %><% if (includeUIBootstrap) { %>
-  "ui-bootstrap-tpls"<% } %><% if (includeLodash) { %>
+  "jquery"<% if (includeReactAddons) { %>
+  "react-with-addons"<% } else { %>
+  "react"<% } %>
+  "home/home"
+  "when"
+  "rest"
+  "director"<% if (includeLodash) { %>
   "lodash"<% } %>
   "bootstrap"
-  "home/home"
-], (angular) ->
+], ($, React, home) ->
   "use strict"
+  $(document).ready ->
 
-  #App Module
-  angular.element(document).ready ->
+    # App Module
+    routeDOMElement = document.getElementById("route")
 
-    #smart works go here
-    $html = angular.element("html")
-    angular.module("webApp", [
-      "ui.router"
-      "restangular"<% if (includeUIBootstrap) { %>
-      "ui.bootstrap"<% } %><% if (includeAngularAnimate) { %>
-      "ngAnimate"<% } %><% if (includeBindonce) { %>
-      "pasvaz.bindonce"<% } %>
-      "homeModule"
-    ]).config ["$urlRouterProvider", "$provide", ($urlRouterProvider, $provide) ->
-      $urlRouterProvider.otherwise "/"
+    #doc for routing https://github.com/flatiron/director
+    routes =
+      "/": ->
+        React.renderComponent `<home />`, routeDOMElement
+        return
 
-      # change configure to use [[ to be the interpolation ([[2 + 2]])
+    routerHandler = new Router(routes)
+    routerHandler.init "/"
+    return
 
-      #$interpolateProvider.startSymbol('[[');
-      #$interpolateProvider.endSymbol(']]');
-
-      # add safeApply function for $rootScope - called by $scope.$root.safeApply(fn)
-      $provide.decorator "$rootScope", ["$delegate", ($delegate) ->
-        $delegate.safeApply = (fn) ->
-          phase = $delegate.$$phase
-          if phase is "$apply" or phase is "$digest"
-            fn() if fn and typeof fn is "function"
-          else
-            $delegate.$apply fn
-          return
-
-        return $delegate
-      ]
-    ]
-
-    #bootstrap model
-    angular.bootstrap $html, ["webApp"]
+  return#

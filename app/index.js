@@ -180,7 +180,7 @@ var RailsReactGenerator = yeoman.generators.Base.extend({
 
     this.write(path, file);
     this.template('app/main.coffee', 'app/assets/javascripts/main.coffee');
-    this.directory('app/home', 'app/assets/javascripts/home');
+    this.template('app/home/home.js.jsx.coffee', 'app/assets/javascripts/home/home.js.jsx.coffee');
   },
 
   routes: function() {
