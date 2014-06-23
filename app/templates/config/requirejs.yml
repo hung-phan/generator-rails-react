@@ -1,17 +1,17 @@
-paths: <% if (includeReactAddons) { %>
+paths:<% if (includeReactAddons) { %>
   'react-with-addons': 'react/react-with-addons'<% } else { %>
   'react': 'react/react'<% } %>
   'director': 'director/build/director'
   'jquery': 'jquery/dist/jquery'<% if (includeLodash) { %>
-  'lodash': '../bower_components/lodash/dist/lodash'<% } %>
+  'lodash': 'lodash/dist/lodash'<% } %>
   'bootstrap': 'sass-bootstrap/dist/js/bootstrap'
-shim: <% if (includeReactAddons) { %>
+shim:<% if (includeReactAddons) { %>
   'react-with-addons':
     exports: 'React'<% } else { %>
   'react':
     exports: 'React'<% } %><% if (includeLodash) { %>
   'lodash':
-    exports: '_' }<% } %>
+    exports: '_'<% } %>
   'director':
     exports: 'Router'
   'bootstrap': ['jquery']

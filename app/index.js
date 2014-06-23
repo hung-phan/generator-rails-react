@@ -73,8 +73,6 @@ var RailsReactGenerator = yeoman.generators.Base.extend({
       message: 'What js library would you like to include?',
       choices: [
         { name: 'Lodash.js'      , value: 'includeLodash'      , checked: true } ,
-        { name: 'React Addons'   , value: 'includeReactAddons' , checked: true } ,
-        { name: 'When by Cujojs' , value: 'includeWhen'        , checked: true } ,
         { name: 'REST by Cujojs' , value: 'includeRest'        , checked: true } ,
         { name: 'React Addons'   , value: 'includeReactAddons' , checked: true } ,
         { name: 'Modernizr'      , value: 'includeModernizr'   , checked: true }
@@ -87,7 +85,6 @@ var RailsReactGenerator = yeoman.generators.Base.extend({
       // JS
       this.includeLodash      = includeJS('includeLodash');
       this.includeReactAddons = includeJS('includeReactAddons');
-      this.includeWhen        = includeJS('includeWhen');
       this.includeRest        = includeJS('includeRest');
       this.includeModernizr   = includeJS('includeModernizr');
       cb();
@@ -179,7 +176,7 @@ var RailsReactGenerator = yeoman.generators.Base.extend({
                .replace("//= require_tree .", '//= require main');
 
     this.write(path, file);
-    this.template('app/main.coffee', 'app/assets/javascripts/main.coffee');
+    this.template('app/main.jsx.coffee', 'app/assets/javascripts/main.jsx.coffee');
     this.template('app/home/home.js.jsx.coffee', 'app/assets/javascripts/home/home.js.jsx.coffee');
   },
 

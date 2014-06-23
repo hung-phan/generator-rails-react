@@ -3,9 +3,8 @@ require [
   "jquery"<% if (includeReactAddons) { %>
   "react-with-addons"<% } else { %>
   "react"<% } %>
-  "home/home"
-  "when"
-  "rest"
+  "home/home"<% if (includeRest) { %>
+  "rest"<% } %>
   "director"<% if (includeLodash) { %>
   "lodash"<% } %>
   "bootstrap"
@@ -26,4 +25,4 @@ require [
     routerHandler.init "/"
     return
 
-  return#
+  return
