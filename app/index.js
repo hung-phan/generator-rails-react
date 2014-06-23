@@ -4,51 +4,246 @@ var path = require('path');
 var yeoman = require('yeoman-generator');
 var yosay = require('yosay');
 var chalk = require('chalk');
-
+var magenta = chalk.magenta;
+var shell = require('shelljs');
 
 var RailsReactGenerator = yeoman.generators.Base.extend({
   init: function () {
-    this.pkg = require('../package.json');
-
     this.on('end', function () {
       if (!this.options['skip-install']) {
-        this.installDependencies();
+        console.log(magenta("Thank for using"));
       }
     });
   },
 
-  askFor: function () {
-    var done = this.async();
-
-    // Have Yeoman greet the user.
-    this.log(yosay('Welcome to the marvelous RailsReact generator!'));
+  askForCSSLibrary: function () {
+    var cb = this.async();
 
     var prompts = [{
-      type: 'confirm',
-      name: 'someOption',
-      message: 'Would you like to enable this option?',
-      default: true
+      type: 'checkbox',
+      name: 'cssFile',
+      message: 'What css library would you like to include?',
+      choices: [
+        { name: 'SASS Button by Alexwolfe' , value: 'includeButtonCss'   , checked: false },
+        { name: 'Animate SCSS'             , value: 'includeAnimateCss'  , checked: false },
+        { name: 'Bootstrap font-awesome'   , value: 'includeFontAwesome' , checked: true }
+      ]
     }];
 
     this.prompt(prompts, function (props) {
-      this.someOption = props.someOption;
+      function includeCSS(css) { return props.cssFile.indexOf(css) !== -1; }
 
-      done();
+      // CSS
+      this.includeButtonCss   = includeCSS('includeButtonCss');
+      this.includeAnimateCss  = includeCSS('includeAnimateCss');
+      this.includeFontAwesome = includeCSS('includeFontAwesome');
+
+      cb();
     }.bind(this));
   },
 
-  app: function () {
-    this.mkdir('app');
-    this.mkdir('app/templates');
+  assForUtility: function() {
+    var cb = this.async();
 
-    this.copy('_package.json', 'package.json');
-    this.copy('_bower.json', 'bower.json');
+    var prompts = [{
+      type: 'checkbox',
+      name: 'tool',
+      message: 'What tool support would you like to include?',
+      choices: [
+        { name: 'Livereload' , value: 'includeLiveReload' , checked: false }
+      ]
+    }];
+
+    this.prompt(prompts, function (props) {
+      function includeTool(tool) { return props.tool.indexOf(tool) !== -1; }
+
+      // template support
+      this.includeLiveReload = includeTool('includeLiveReload');
+
+      cb();
+    }.bind(this));
   },
 
-  projectfiles: function () {
-    this.copy('editorconfig', '.editorconfig');
-    this.copy('jshintrc', '.jshintrc');
+  assForJSFile: function() {
+    var cb = this.async();
+
+    var prompts = [{
+      type: 'checkbox',
+      name: 'jsFile',
+      message: 'What js library would you like to include?',
+      choices: [
+        { name: 'Lodash.js'    , value: 'includeLodash'      , checked: true } ,
+        { name: 'React Addons' , value: 'includeReactAddons' , checked: true } ,
+        { name: 'Modernizr'    , value: 'includeModernizr'   , checked: true }
+      ]
+    }];
+
+    this.prompt(prompts, function (props) {
+      function includeJS(js) { return props.jsFile.indexOf(js) !== -1; }
+
+      // JS
+      this.includeLodash      = includeJS('includeLodash');
+      this.includeReactAddons = includeJS('includeReactAddons');
+      this.includeModernizr   = includeJS('includeModernizr');
+      cb();
+    }.bind(this));
+  },
+
+  processingGemfileTemplate: function() {
+    console.log(magenta('Processing Gemfile'));
+    this.template('Gemfile', 'tmp/yeoman/Gemfile');
+  },
+
+  gemfile: function() {
+    //process Gemfile
+    var path   = 'tmp/yeoman/Gemfile',
+        dest   = 'Gemfile',
+        file   = this.readFileAsString(dest),
+        insert = this.readFileAsString(path);
+
+    //modify file before insert
+    file = file.replace("# Use jquery as the JavaScript library\n", '')
+               .replace("gem 'jquery-rails'\n", '')
+               .replace("# Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks\n", '')
+               .replace("gem 'turbolinks'\n", '');
+
+    if (file.indexOf(insert) === -1) {
+      this.write(dest, file + insert);
+    }
+  },
+
+  bundleInstall: function() {
+    shell.exec("bundle install");
+  },
+
+  executeBowerTask: function() {
+    console.log(magenta('Processing Bowerfile'));
+    shell.exec("rails g bower_rails:initialize");
+  },
+
+  processingBowerfileTemplate: function() {
+    this.template('Bowerfile', 'tmp/yeoman/Bowerfile');
+  },
+
+  bower: function() {
+    //process bower
+    var path   = 'tmp/yeoman/Bowerfile',
+        dest   = 'Bowerfile',
+        file   = this.readFileAsString(dest),
+        insert = this.readFileAsString(path);
+
+    if (file.indexOf(insert) === -1) {
+      this.write(dest, file + insert);
+    }
+  },
+
+  bowerInstall: function() {
+    shell.exec("rake bower:install");
+  },
+
+  templateSupport: function() {
+    console.log(magenta('Adding template support: angular_template_assets.rb'));
+    this.template('config/angular_template_assets.rb', 'config/initializers/angular_template_assets.rb');
+  },
+
+  requirejs: function() {
+    //requirejs config
+    console.log(magenta('Requirejs config/requirejs.yml'));
+    this.template('config/requirejs.yml', 'config/requirejs.yml');
+  },
+
+  jasmineInit: function() {
+    console.log(magenta('Integrate jasmine testing framework'));
+    shell.exec("rails generate jasmine_rails:install");
+  },
+
+  jasmine: function() {
+    //process jasmine
+
+    //init template and rooting at localhost:3000/specs
+    this.mkdir('spec/javascripts/helpers');
+    this.mkdir('spec/javascripts/spec');
+    this.copy('jasmine_rails/jasmine.yml', 'spec/javascripts/support/jasmine.yml');
+    this.copy('spec/javascripts/helpers/angular_template_helper.coffee.erb', 'spec/javascripts/helpers/angular_template_helper.coffee.erb');
+    this.copy('spec/javascripts/spec/home_unitspec.coffee', 'spec/javascripts/spec/home_unitspec.coffee');
+    this.copy('jasmine_rails/spec_helper.rb', 'lib/jasmine_rails/spec_helper.rb');
+    this.copy('jasmine_rails/spec_runner.html.erb', 'app/views/layouts/jasmine_rails/spec_runner.html.erb');
+
+    //include config into config/application.rb
+    var path   = 'config/application.rb',
+        hook   = 'class Application < Rails::Application\n',
+        file   = this.readFileAsString(path),
+        insert = '    config.autoload_paths += %W(#{config.root}/lib)\n';
+
+    if (file.indexOf(insert) === -1) {
+      this.write(path, file.replace(hook, hook + insert));
+    }
+  },
+
+  guard: function() {
+    //process livereload
+    console.log(magenta('Add livereload utility'));
+    if (this.includeLiveReload) {
+      shell.exec("guard init livereload");
+    }
+  },
+
+  view: function () {
+    console.log(magenta('Processing view'));
+    this.copy('view/index.html', 'app/views/application/index.html');
+    this.template('view/application.html.erb', 'app/views/layouts/application.html.erb');
+  },
+
+  appJs: function() {
+    console.log(magenta('Processing app js'));
+    var path   = 'app/assets/javascripts/application.js',
+        file   = this.readFileAsString(path);
+
+    //modify file before insert
+    file = file.replace("//= require jquery\n", '')
+               .replace("//= require jquery_ujs\n", '')
+               .replace("//= require turbolinks\n", '')
+               .replace("//= require_tree .", '//= require main');
+
+    this.write(path, file);
+    this.template('app/main.coffee', 'app/assets/javascripts/main.coffee');
+    this.directory('app/home', 'app/assets/javascripts/home');
+  },
+
+  routes: function() {
+    console.log(magenta('Processing config/routes.rb'));
+    var path   = 'config/routes.rb',
+        hook   = 'Rails.application.routes.draw do\n',
+        file   = this.readFileAsString(path),
+        insert = "  root 'application#index'\n";
+
+    if (file.indexOf(insert) === -1) {
+      this.write(path, file.replace(hook, hook + insert));
+    }
+  },
+
+  stylesheets: function() {
+    console.log(magenta('Processing app stylesheets'));
+    var extra  = '';
+    if (this.includeButtonCss) {
+      extra += " *= require Buttons/scss/buttons.scss\n";
+    }
+    if (this.includeAnimateCss) {
+      extra += " *= require animate-sass/_animate.scss\n";
+    }
+    var path   = 'app/assets/stylesheets/application.css',
+        hook   = ' *= require_tree .\n',
+        file   = this.readFileAsString(path),
+        insert = ' *= require sass-bootstrap/lib/bootstrap.scss\n' +
+                 ' *= require font-awesome\n' +
+                 extra +
+                 ' *= require_tree .\n';
+
+    if (file.indexOf(insert) === -1) {
+      this.write(path, file.replace(hook, insert));
+    }
   }
+
 });
 
 module.exports = RailsReactGenerator;

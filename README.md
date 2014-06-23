@@ -1,4 +1,4 @@
-# generator-rails-react [![Build Status](https://secure.travis-ci.org/hung-phan/generator-rails-react.png?branch=master)](https://travis-ci.org/hung-phan/generator-rails-react)
+# generator-rails-react
 
 > [Yeoman](http://yeoman.io) generator
 

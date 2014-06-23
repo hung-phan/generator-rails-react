@@ -1,0 +1,24 @@
+# bower dependencies manager for rails
+gem 'bower-rails'<% if (includeModernizr) { %>
+# modernizr
+gem 'modernizr-rails', '~> 2.7.1'<% } %>
+# requirejs
+gem 'requirejs-rails'<% if (includeButtonCss) { %>
+# button sass
+gem 'compass-rails'<% } %><% if (includeFontAwesome) { %>
+# font awesome
+gem 'font-awesome-rails'<% } %>
+# jasmine
+group :development, :test do
+  gem 'jasmine'
+  gem 'jasmine-rails'
+end<% if (includeLiveReload) { %>
+# livereload using guard server
+group :development do
+  gem 'guard'
+  gem 'guard-livereload', require: false
+end<% } %><% if (includeHaml) { %>
+# haml template
+gem 'haml'<% } %><% if (includeSlim) { %>
+# slim template
+gem 'slim'<% } %>
