@@ -55,11 +55,14 @@ or install [LiveReload Safari/Chrome extension](http://feedback.livereload.com/k
 ```bash
 $ bundle exec guard # to run the guard server and enjoy coding
 ```
+### Testing
+Working on
 
 ### Subgenerators
 
 This also supports for subgenerator for `component` as well. Make sure you link them in your
 __main.js__
+
 ```bash
 $ yo rails-react:component "name" #replace the name with your module name
 
