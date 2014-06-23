@@ -72,9 +72,12 @@ var RailsReactGenerator = yeoman.generators.Base.extend({
       name: 'jsFile',
       message: 'What js library would you like to include?',
       choices: [
-        { name: 'Lodash.js'    , value: 'includeLodash'      , checked: true } ,
-        { name: 'React Addons' , value: 'includeReactAddons' , checked: true } ,
-        { name: 'Modernizr'    , value: 'includeModernizr'   , checked: true }
+        { name: 'Lodash.js'      , value: 'includeLodash'      , checked: true } ,
+        { name: 'React Addons'   , value: 'includeReactAddons' , checked: true } ,
+        { name: 'When by Cujojs' , value: 'includeWhen'        , checked: true } ,
+        { name: 'REST by Cujojs' , value: 'includeRest'        , checked: true } ,
+        { name: 'React Addons'   , value: 'includeReactAddons' , checked: true } ,
+        { name: 'Modernizr'      , value: 'includeModernizr'   , checked: true }
       ]
     }];
 
@@ -84,6 +87,8 @@ var RailsReactGenerator = yeoman.generators.Base.extend({
       // JS
       this.includeLodash      = includeJS('includeLodash');
       this.includeReactAddons = includeJS('includeReactAddons');
+      this.includeWhen        = includeJS('includeWhen');
+      this.includeRest        = includeJS('includeRest');
       this.includeModernizr   = includeJS('includeModernizr');
       cb();
     }.bind(this));
@@ -141,44 +146,12 @@ var RailsReactGenerator = yeoman.generators.Base.extend({
     shell.exec("rake bower:install");
   },
 
-  templateSupport: function() {
-    console.log(magenta('Adding template support: angular_template_assets.rb'));
-    this.template('config/angular_template_assets.rb', 'config/initializers/angular_template_assets.rb');
-  },
-
   requirejs: function() {
     //requirejs config
     console.log(magenta('Requirejs config/requirejs.yml'));
     this.template('config/requirejs.yml', 'config/requirejs.yml');
   },
 
-  jasmineInit: function() {
-    console.log(magenta('Integrate jasmine testing framework'));
-    shell.exec("rails generate jasmine_rails:install");
-  },
-
-  jasmine: function() {
-    //process jasmine
-
-    //init template and rooting at localhost:3000/specs
-    this.mkdir('spec/javascripts/helpers');
-    this.mkdir('spec/javascripts/spec');
-    this.copy('jasmine_rails/jasmine.yml', 'spec/javascripts/support/jasmine.yml');
-    this.copy('spec/javascripts/helpers/angular_template_helper.coffee.erb', 'spec/javascripts/helpers/angular_template_helper.coffee.erb');
-    this.copy('spec/javascripts/spec/home_unitspec.coffee', 'spec/javascripts/spec/home_unitspec.coffee');
-    this.copy('jasmine_rails/spec_helper.rb', 'lib/jasmine_rails/spec_helper.rb');
-    this.copy('jasmine_rails/spec_runner.html.erb', 'app/views/layouts/jasmine_rails/spec_runner.html.erb');
-
-    //include config into config/application.rb
-    var path   = 'config/application.rb',
-        hook   = 'class Application < Rails::Application\n',
-        file   = this.readFileAsString(path),
-        insert = '    config.autoload_paths += %W(#{config.root}/lib)\n';
-
-    if (file.indexOf(insert) === -1) {
-      this.write(path, file.replace(hook, hook + insert));
-    }
-  },
 
   guard: function() {
     //process livereload

@@ -3,7 +3,9 @@
 asset 'sass-bootstrap'<% if (includeLodash) { %>
 asset 'lodash'<% } %>
 asset 'jquery', '2.1.1'
-asset 'director'
+asset 'director'<% if (includeRest) { %>
+asset 'rest'<% } %><% if (includeWhen) { %>
+asset 'when'<% } %>
 asset 'react'<% if (includeButtonCss) { %>
 asset 'Buttons'<% } %><% if (includeAnimateCss) { %>
 asset 'animate-sass'<% } %>
