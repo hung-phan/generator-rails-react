@@ -42,8 +42,8 @@ Other dependencies
 2. Compass (gem install compass)
 
 ## Template
-I define all the react components with suffix __.js.jsx.coffee__ based on (react-rails)[https://github.com/reactjs/react-rails].
-However, I like the way of require.js controlling application by module rather than defining all js file in __application.js__
+I define all the react components with suffix __.js.jsx.coffee__ based on [react-rails](https://github.com/reactjs/react-rails).
+For code fragments, I like the way of require.js controlling application by module rather than defining all js file in __application.js__
 
 ## Task
 
