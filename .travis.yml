@@ -1,0 +1,7 @@
+language: node_js
+node_js:
+  - '0.10'
+before_install:
+  - currentfolder=${PWD##*/}
+  - if [ "$currentfolder" != 'generator-rails-react' ]; then cd .. && eval "mv $currentfolder generator-rails-react" && cd generator-rails-react; fi
+
