@@ -72,10 +72,10 @@ var RailsReactGenerator = yeoman.generators.Base.extend({
       name: 'jsFile',
       message: 'What js library would you like to include?',
       choices: [
-        { name: 'Lodash.js'      , value: 'includeLodash'      , checked: true } ,
-        { name: 'REST by Cujojs' , value: 'includeRest'        , checked: true } ,
-        { name: 'React Addons'   , value: 'includeReactAddons' , checked: true } ,
-        { name: 'Modernizr'      , value: 'includeModernizr'   , checked: true }
+        { name: 'Lodash.js'                , value: 'includeLodash'      , checked: true } ,
+        { name: 'REST wrapper by jpillora' , value: 'includeRest'        , checked: true } ,
+        { name: 'React Addons'             , value: 'includeReactAddons' , checked: true } ,
+        { name: 'Modernizr'                , value: 'includeModernizr'   , checked: true }
       ]
     }];
 

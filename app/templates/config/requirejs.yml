@@ -1,9 +1,16 @@
-paths:<% if (includeReactAddons) { %>
+paths:
+  # react library<% if (includeReactAddons) { %>
   'react-with-addons': 'react/react-with-addons'<% } else { %>
   'react': 'react/react'<% } %>
-  'director': 'director/build/director'
+  # require director to handle routing on client-side
+  'director': 'director/build/director'<% if (includeRest) { %>
+  # REST wrapper for jquery
+  'rest': 'jquery.rest/dist/1/jquery.rest'<% } %>
+  # require jquery library
   'jquery': 'jquery/dist/jquery'<% if (includeLodash) { %>
+  # require lodash
   'lodash': 'lodash/dist/lodash'<% } %>
+  # bootstrap library
   'bootstrap': 'sass-bootstrap/dist/js/bootstrap'
 shim:<% if (includeReactAddons) { %>
   'react-with-addons':
@@ -13,5 +20,6 @@ shim:<% if (includeReactAddons) { %>
   'lodash':
     exports: '_'<% } %>
   'director':
-    exports: 'Router'
+    exports: 'Router'<% if (includeRest) { %>
+  'rest': ['jquery']<% } %>
   'bootstrap': ['jquery']

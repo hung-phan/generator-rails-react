@@ -3,9 +3,9 @@ require [
   "jquery"<% if (includeReactAddons) { %>
   "react-with-addons"<% } else { %>
   "react"<% } %>
-  "home/home"<% if (includeRest) { %>
-  "rest"<% } %>
-  "director"<% if (includeLodash) { %>
+  "home/home"
+  "director"<% if (includeRest) { %>
+  "rest"<% } %><% if (includeLodash) { %>
   "lodash"<% } %>
   "bootstrap"
 ], ($, React, home) ->
