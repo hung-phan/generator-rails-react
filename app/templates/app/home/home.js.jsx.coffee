@@ -12,8 +12,7 @@ define [<% if (includeReactAddons) { %>
       return
 
     render: ->
-      `
-      <div className="container">
+      `<div className="container">
           <div className="header">
               <ul className="nav nav-pills pull-right">
                   <li className="active"><a href="#">Home</a>
@@ -58,5 +57,4 @@ define [<% if (includeReactAddons) { %>
               <p>♥ from the Yeoman team</p>
           </div>
 
-      </div>
-      `
+      </div>`
