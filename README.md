@@ -78,7 +78,7 @@ application/
   |  |  |  |- <codeModule>/
   |  |  |  |  |- codeModule.js.jsx.coffee
   |  |  |  |- application.js
-  |  |  |  |- main.js.coffee # main file
+  |  |  |  |- main.jsx.coffee # main file
   |  |  |- stylesheets/
   |  |  |  |- application.css
   |  |- controllers/
