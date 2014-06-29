@@ -3,9 +3,9 @@ paths:
   'react-with-addons': 'react/react-with-addons'<% } else { %>
   'react': 'react/react'<% } %>
   # require director to handle routing on client-side
-  'director': 'director/build/director'<% if (includeRest) { %>
-  # REST wrapper for jquery
-  'rest': 'jquery.rest/dist/1/jquery.rest'<% } %>
+  'director': 'director/build/director'<% if (includeSuperagent) { %>
+  # REST wrapper
+  'superagent': 'superagent/superagent'<% } %>
   # require jquery library
   'jquery': 'jquery/dist/jquery'<% if (includeLodash) { %>
   # require lodash
@@ -20,6 +20,5 @@ shim:<% if (includeReactAddons) { %>
   'lodash':
     exports: '_'<% } %>
   'director':
-    exports: 'Router'<% if (includeRest) { %>
-  'rest': ['jquery']<% } %>
+    exports: 'Router'
   'bootstrap': ['jquery']

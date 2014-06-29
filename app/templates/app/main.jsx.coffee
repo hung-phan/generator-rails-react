@@ -4,8 +4,8 @@ require [
   "react-with-addons"<% } else { %>
   "react"<% } %>
   "home/home"
-  "director"<% if (includeRest) { %>
-  "rest"<% } %><% if (includeLodash) { %>
+  "director"<% if (includeSuperagent) { %>
+  "superagent"<% } %><% if (includeLodash) { %>
   "lodash"<% } %>
   "bootstrap"
 ], ($, React, home) ->
