@@ -50,7 +50,7 @@ For code fragments, I like the way of require.js controlling application by modu
 
 Name: mongoid (for mongodb)
 
-add `--skip-active-record` option to your `rails new app --skip-bundle --skip-active-record` command before selecting this option.
+add `--skip-active-record` option to your `rails new app --skip-active-record` command before selecting this option.
 
 ## Task
 
