@@ -46,6 +46,12 @@ Other dependencies
 I define all the react components with suffix __.js.jsx.coffee__ based on [react-rails](https://github.com/reactjs/react-rails).
 For code fragments, I like the way of require.js controlling application by module rather than defining all js file in __application.js__
 
+## Options
+
+Name: mongoid (for mongodb)
+
+add `--skip-active-record` option to your `rails new app --skip-bundle --skip-active-record` command before selecting this option.
+
 ## Task
 
 ### Live reload
