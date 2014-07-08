@@ -11,7 +11,7 @@ paths:
   # require lodash
   'lodash': 'lodash/dist/lodash'<% } %>
   # bootstrap library
-  'bootstrap': 'sass-bootstrap/dist/js/bootstrap'
+  'bootstrap': 'bootstrap-sprockets'
 shim:<% if (includeReactAddons) { %>
   'react-with-addons':
     exports: 'React'<% } else { %>

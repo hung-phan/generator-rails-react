@@ -183,8 +183,8 @@ var RailsReactGenerator = yeoman.generators.Base.extend({
 
   guard: function() {
     //process livereload
-    console.log(magenta('Add livereload utility'));
     if (this.includeLiveReload) {
+      console.log(magenta('Add livereload utility'));
       shell.exec("guard init livereload");
     }
   },
