@@ -8,6 +8,8 @@ gem 'bower-rails'<% if (includeModernizr) { %>
 gem 'modernizr-rails', '~> 2.7.1'<% } %><% if (includeMongodb) { %>
 # mongoid
 gem 'mongoid'<% } %>
+# rspec
+gem 'rspec'
 # react jsx compile
 gem 'react-rails'
 # requirejs
