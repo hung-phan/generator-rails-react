@@ -223,6 +223,11 @@ var RailsReactGenerator = yeoman.generators.Base.extend({
     }
   },
 
+  defaultStylesheet: function() {
+    console.log(magenta('Copy default.css.scss file'));
+    this.template('app/default.css.scss', 'app/assets/stylesheets/default.css.scss');
+  },
+
   stylesheets: function() {
     console.log(magenta('Processing app stylesheets'));
     var extra  = '';
@@ -235,10 +240,7 @@ var RailsReactGenerator = yeoman.generators.Base.extend({
     var path   = 'app/assets/stylesheets/application.css',
         hook   = ' *= require_tree .\n',
         file   = this.readFileAsString(path),
-        insert = ' *= require sass-bootstrap/lib/bootstrap.scss\n' +
-                 ' *= require font-awesome\n' +
-                 extra +
-                 ' *= require_tree .\n';
+        insert = ' *= require default\n' + extra + ' *= require_tree .\n';
 
     if (file.indexOf(insert) === -1) {
       this.write(path, file.replace(hook, insert));
