@@ -1,6 +1,6 @@
 paths:
   # react library<% if (includeReactAddons) { %>
-  'react-with-addons': 'react/react-with-addons'<% } else { %>
+  'react': 'react/react-with-addons'<% } else { %>
   'react': 'react/react'<% } %>
   # require director to handle routing on client-side
   'director': 'director/build/director'<% if (includeSuperagent) { %>
@@ -13,7 +13,7 @@ paths:
   # bootstrap library
   'bootstrap': 'bootstrap-sprockets'
 shim:<% if (includeReactAddons) { %>
-  'react-with-addons':
+  'react':
     exports: 'React'<% } else { %>
   'react':
     exports: 'React'<% } %><% if (includeLodash) { %>

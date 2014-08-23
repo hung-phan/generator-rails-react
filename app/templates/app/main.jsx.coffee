@@ -1,8 +1,7 @@
 ###* @jsx React.DOM ###
 require [
-  "jquery"<% if (includeReactAddons) { %>
-  "react-with-addons"<% } else { %>
-  "react"<% } %>
+  "jquery"
+  "react"
   "home/home"
   "director"<% if (includeSuperagent) { %>
   "superagent"<% } %><% if (includeLodash) { %>

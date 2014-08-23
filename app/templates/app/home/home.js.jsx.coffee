@@ -1,7 +1,6 @@
 ###* @jsx React.DOM ###
-define [<% if (includeReactAddons) { %>
-  "react-with-addons"<% } else { %>
-  "react"<% } %>
+define [
+  "react"
 ], (React) ->
   React.createClass
     getInitialState: ->
