@@ -7,6 +7,7 @@ require [
   "superagent"<% } %><% if (includeLodash) { %>
   "lodash"<% } %>
   "bootstrap"
+  "jquery_ujs"
 ], ($, React, home) ->
   "use strict"
   $(document).ready ->

@@ -8,7 +8,8 @@ paths:
   # REST wrapper
   'superagent': 'superagent/superagent'<% } %>
   # require jquery library
-  'jquery': 'jquery/dist/jquery'<% if (includeLodash) { %>
+  'jquery': 'jquery'
+  'jquery_ujs': 'jquery_ujs'<% if (includeLodash) { %>
   # require lodash
   'lodash': 'lodash/dist/lodash'<% } %>
   # bootstrap library
@@ -21,6 +22,7 @@ shim:<% if (includeReactAddons) { %>
   'react_ujs': ['react']<% if (includeLodash) { %>
   'lodash':
     exports: '_'<% } %>
+  'jquery_ujs': ['jquery']
   'director':
     exports: 'Router'
   'bootstrap': ['jquery']
