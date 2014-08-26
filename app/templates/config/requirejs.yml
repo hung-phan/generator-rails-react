@@ -2,6 +2,7 @@ paths:
   # react library<% if (includeReactAddons) { %>
   'react': 'react/react-with-addons'<% } else { %>
   'react': 'react/react'<% } %>
+  'react_ujs': 'react-ujs'
   # require director to handle routing on client-side
   'director': 'director/build/director'<% if (includeSuperagent) { %>
   # REST wrapper
@@ -16,7 +17,8 @@ shim:<% if (includeReactAddons) { %>
   'react':
     exports: 'React'<% } else { %>
   'react':
-    exports: 'React'<% } %><% if (includeLodash) { %>
+    exports: 'React'<% } %>
+  'react_ujs': ['react']<% if (includeLodash) { %>
   'lodash':
     exports: '_'<% } %>
   'director':
