@@ -18,7 +18,7 @@ require [
     #doc for routing https://github.com/flatiron/director
     routes =
       "/": ->
-        React.renderComponent `<home />`, routeDOMElement
+        React.render `<home />`, routeDOMElement
         return
 
     routerHandler = new Router(routes)
