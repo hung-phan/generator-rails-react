@@ -8,7 +8,7 @@ require [
   "lodash"<% } %>
   "bootstrap"
   "jquery_ujs"
-], ($, React, home) ->
+], ($, React, Home) ->
   "use strict"
   $(document).ready ->
 
@@ -18,7 +18,7 @@ require [
     #doc for routing https://github.com/flatiron/director
     routes =
       "/": ->
-        React.render `<home />`, routeDOMElement
+        React.render `<Home />`, routeDOMElement
         return
 
     routerHandler = new Router(routes)
