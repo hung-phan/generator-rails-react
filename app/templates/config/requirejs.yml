@@ -1,3 +1,6 @@
+modules:
+  - name: application
+  - name: react_ujs
 paths:
   # react library<% if (includeReactAddons) { %>
   'react': 'react/react-with-addons'<% } else { %>
@@ -14,12 +17,9 @@ paths:
   'lodash': 'lodash/dist/lodash'<% } %>
   # bootstrap library
   'bootstrap': 'bootstrap-sprockets'
-shim:<% if (includeReactAddons) { %>
+shim:
   'react':
-    exports: 'React'<% } else { %>
-  'react':
-    exports: 'React'<% } %>
-  'react_ujs': ['react']<% if (includeLodash) { %>
+    exports: 'React'<% if (includeLodash) { %>
   'lodash':
     exports: '_'<% } %>
   'jquery_ujs': ['jquery']

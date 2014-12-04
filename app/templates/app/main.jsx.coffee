@@ -1,4 +1,6 @@
 ###* @jsx React.DOM ###
+"use strict"
+
 require [
   "jquery"
   "react"
@@ -9,9 +11,11 @@ require [
   "bootstrap"
   "jquery_ujs"
 ], ($, React, Home) ->
-  "use strict"
-  $(document).ready ->
 
+  # export React to global env
+  window.React = React
+
+  $(document).ready ->
     # App Module
     routeDOMElement = document.getElementById("route")
 
