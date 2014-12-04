@@ -15,6 +15,9 @@ require [
   # export React to global env
   window.React = React
 
+	# binding react component
+	require ["react_ujs"], (->)
+
   $(document).ready ->
     # App Module
     routeDOMElement = document.getElementById("route")
