@@ -1,4 +1,3 @@
-###* @jsx React.DOM ###
 "use strict"
 
 require [
@@ -25,7 +24,7 @@ require [
     #doc for routing https://github.com/flatiron/director
     routes =
       "/": ->
-        React.render `<Home />`, routeDOMElement
+        React.render React.createFactory(Home)(), routeDOMElement
         return
 
     routerHandler = new Router(routes)

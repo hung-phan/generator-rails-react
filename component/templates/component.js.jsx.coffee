@@ -1,4 +1,3 @@
-###* @jsx React.DOM ###
 define [<% if (includeReactAddons) { %>
   "react-with-addons"<% } else { %>
   "react"<% } %>
