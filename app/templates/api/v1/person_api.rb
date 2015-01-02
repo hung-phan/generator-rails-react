@@ -25,7 +25,7 @@ module API
         # GET /api/v1/people/:id
         desc "Retrieve person with id"
         get "/:id" do
-          Person.find(params[:d])
+          Person.find(params[:id])
         end
 
         # POST /api/v1/people
