@@ -14,7 +14,7 @@ paths:
   'jquery': 'jquery'
   'jquery_ujs': 'jquery_ujs'<% if (includeLodash) { %>
   # require lodash
-  'lodash': 'lodash/dist/lodash'<% } %>
+  'lodash': 'lodash/lodash'<% } %>
   # bootstrap library
   'bootstrap': 'bootstrap-sprockets'
 shim:

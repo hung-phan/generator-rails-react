@@ -176,7 +176,30 @@ var RailsReactGenerator = yeoman.generators.Base.extend({
 
   grapeInitFile: function() {
     if (this.includeGrape) {
-      this.directory('api', 'app/controllers/api');
+      this.directory('api', 'app/api');
+    }
+  },
+
+  autoLoadPath: function() {
+    //include config into config/application.rb
+    var path   = 'config/application.rb',
+        hook   = 'class Application < Rails::Application\n',
+        file   = this.readFileAsString(path),
+        insert = '    config.autoload_paths += %W(#{config.root}/lib #{Rails.root}/app)\n';
+
+    if (file.indexOf(insert) === -1) {
+      this.write(path, file.replace(hook, hook + insert));
+    }
+  },
+
+  assetsPath: function() {
+    //include config into config/initializers/assets.rb
+    var path   = 'config/initializers/assets.rb',
+        file   = this.readFileAsString(path),
+        insert = 'Rails.application.config.assets.precompile += %w( react_ujs.js )';
+
+    if (file.indexOf(insert) === -1) {
+      this.write(path, file + insert);
     }
   },
 
