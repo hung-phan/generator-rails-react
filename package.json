@@ -20,7 +20,7 @@
     "app"
   ],
   "keywords": [
-    "yeoman-generator"
+    "yeoman-generator", "react", "rails"
   ],
   "dependencies": {
     "yeoman-generator": "~0.16.0",
