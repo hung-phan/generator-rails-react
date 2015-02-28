@@ -1,6 +1,6 @@
 {
   "name": "generator-rails-react",
-  "version": "0.1.17",
+  "version": "0.1.18",
   "description": "Yeoman generator",
   "license": "MIT",
   "main": "app/index.js",
@@ -20,7 +20,7 @@
     "app"
   ],
   "keywords": [
-    "yeoman-generator", "react", "rails"
+    "yeoman-generator", "react", "rails", "require.js"
   ],
   "dependencies": {
     "yeoman-generator": "~0.16.0",
