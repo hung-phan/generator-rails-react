@@ -33,7 +33,7 @@ group :development do
   gem 'meta_request'
 end
 # react jsx compile
-gem 'react-rails', '~> 1.0.0.pre', github: 'reactjs/react-rails'
+gem 'react-rails'
 # requirejs
 gem 'requirejs-rails'<% if (includeButtonCss) { %>
 # button sass
