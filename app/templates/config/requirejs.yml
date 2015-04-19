@@ -7,9 +7,7 @@ paths:
   'react': 'react/react'<% } %>
   'react_ujs': 'react_ujs'
   # require director to handle routing on client-side
-  'director': 'director/build/director'<% if (includeSuperagent) { %>
-  # REST wrapper
-  'superagent': 'superagent/superagent'<% } %>
+  'director': 'director/build/director'
   # require jquery library
   'jquery': 'jquery'
   'jquery_ujs': 'jquery_ujs'<% if (includeLodash) { %>

@@ -1,8 +1,7 @@
 # auto generate bower assets<% if (includeLodash) { %>
 
 asset 'lodash'<% } %>
-asset 'director'<% if (includeSuperagent) { %>
-asset 'superagent'<% } %>
+asset 'director'
 asset 'react'<% if (includeButtonCss) { %>
 asset 'Buttons'<% } %><% if (includeAnimateCss) { %>
 asset 'animate-sass'<% } %>

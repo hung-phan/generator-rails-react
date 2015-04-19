@@ -4,8 +4,7 @@ require [
   'jquery'
   'react'
   'home/home'
-  'director'<% if (includeSuperagent) { %>
-  'superagent'<% } %><% if (includeLodash) { %>
+  'director'<% if (includeLodash) { %>
   'lodash'<% } %>
   'bootstrap'
   'jquery_ujs'

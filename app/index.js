@@ -78,10 +78,9 @@ var RailsReactGenerator = yeoman.generators.Base.extend({
       name: 'jsFile',
       message: 'What js library would you like to include?',
       choices: [
-        { name: 'Lodash.js'                      , value: 'includeLodash'      , checked: true } ,
-        { name: 'REST superagent by visionmedia' , value: 'includeSuperagent'  , checked: true } ,
-        { name: 'React Addons'                   , value: 'includeReactAddons' , checked: true } ,
-        { name: 'Modernizr'                      , value: 'includeModernizr'   , checked: true }
+        { name: 'Lodash.js'    , value: 'includeLodash'      , checked: true },
+        { name: 'React Addons' , value: 'includeReactAddons' , checked: true },
+        { name: 'Modernizr'    , value: 'includeModernizr'   , checked: true }
       ]
     }];
 
@@ -91,7 +90,6 @@ var RailsReactGenerator = yeoman.generators.Base.extend({
       // JS
       this.includeLodash      = includeJS('includeLodash');
       this.includeReactAddons = includeJS('includeReactAddons');
-      this.includeSuperagent  = includeJS('includeSuperagent');
       this.includeModernizr   = includeJS('includeModernizr');
       cb();
     }.bind(this));
