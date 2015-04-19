@@ -138,6 +138,10 @@ application/
 ## Contribution
 All contributions are welcomed.
 
+## Better Integration
+Please look at [generator-rails-react-webpack](https://github.com/hung-phan/generator-rails-react-webpack) and
+[generator-rails-react-browserify](https://github.com/hung-phan/generator-rails-react-browserify) projects
+
 ## License
 
 [MIT License](http://en.wikipedia.org/wiki/MIT_License)
