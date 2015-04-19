@@ -4,6 +4,10 @@
 
 [![NPM](https://nodei.co/npm/generator-rails-react.png?downloads=true)](https://nodei.co/npm/generator-rails-react/)
 
+## Better Integration
+Please look at [generator-rails-react-webpack](https://github.com/hung-phan/generator-rails-react-webpack) and
+[generator-rails-react-browserify](https://github.com/hung-phan/generator-rails-react-browserify) projects
+
 ## Getting Started
 
 To run this version of yeoman generator. First, make sure that you have already installed yeoman
@@ -137,10 +141,6 @@ application/
 
 ## Contribution
 All contributions are welcomed.
-
-## Better Integration
-Please look at [generator-rails-react-webpack](https://github.com/hung-phan/generator-rails-react-webpack) and
-[generator-rails-react-browserify](https://github.com/hung-phan/generator-rails-react-browserify) projects
 
 ## License
 
