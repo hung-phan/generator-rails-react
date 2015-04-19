@@ -1,4 +1,4 @@
-module API
+module APIS
   module V1
     module Defaults
       # if you're using Grape outside of Rails, you'll have to use Module#included hook
@@ -19,7 +19,7 @@ module API
           if Rails.env.development?
             raise e
           else
-            error_response(message: "Internal server error", status: 500)
+            error_response(message: e.message, status: 500)
           end
         end
       end
