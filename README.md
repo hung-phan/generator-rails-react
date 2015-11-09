@@ -4,6 +4,8 @@
 
 [![NPM](https://nodei.co/npm/generator-rails-react.png?downloads=true)](https://nodei.co/npm/generator-rails-react/)
 
+## Deprecated - Please consider to use [generator-rails-react-webpack](https://github.com/hung-phan/generator-rails-react-webpack)
+
 ## Better Integration
 Please look at [generator-rails-react-webpack](https://github.com/hung-phan/generator-rails-react-webpack) and
 [generator-rails-react-browserify](https://github.com/hung-phan/generator-rails-react-browserify) projects
@@ -145,4 +147,3 @@ All contributions are welcomed.
 ## License
 
 [MIT License](http://en.wikipedia.org/wiki/MIT_License)
-
